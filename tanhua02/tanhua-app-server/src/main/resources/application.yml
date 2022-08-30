@@ -1,0 +1,55 @@
+#tomcat端口 app端
+server:
+  port: 81
+spring:
+  #服务名称
+  application:
+    name: tanhua-app-server
+  #nacos注册中心地址 订阅服务地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.136.129:8848
+  redis:
+    host: 192.168.136.129
+    port: 6379
+dubbo:
+  registry:
+    # 使用localhost(项目本身)spring-cloud的注册中心
+    address: spring-cloud://localhost
+  consumer:
+    check: false
+    timeout: 600000
+    retries: 0
+  # 不发布服务
+  provider:
+    export: false
+  protocol:
+    name: dubbo
+    port: 20880
+#各个组件配置
+tanhua:
+  sms:
+    signName: 传智播客
+    templateCode: SMS_204761533
+    accessKey: LTAI5tBWhGbhbSDjbVRdN5jc
+    secret: H1OikeeFOiF1yAvjg4ipjOSt1wiUZB
+  oss:
+    endpoint: https://oss-cn-shenzhen.aliyuncs.com
+    bucketName: szitheima123
+    url: https://szitheima123.oss-cn-shenzhen.aliyuncs.com
+    accessKeyId: LTAI5tBWhGbhbSDjbVRdN5jc
+    accessKeySecret: H1OikeeFOiF1yAvjg4ipjOSt1wiUZB
+  face:
+    appId: 25540472
+    apiKey: XXmgdBlh4UcHhgOyQrjtA57x
+    secretKey: EGmzGWZemTXq6SrSCBbGQ9HPjiOnDTuz
+logging:
+  pattern:
+    # 输出到控制台
+    console: '%d{HH:mm:ss.SSS} %-5level %msg [%thread] - %logger{15}%n\'
+  level:
+    root: info # 全局用info
+    # 只有在com.itheima包下才输出debug信息
+    com:
+      tanhua: debug
